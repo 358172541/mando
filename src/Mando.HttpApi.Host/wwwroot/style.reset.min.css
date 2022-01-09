@@ -1,0 +1,60 @@
+﻿
+/* ======================================================================== */
+
+.ant-form-item .ant-form-item-label {
+    padding: unset;
+}
+
+.ant-form-item-explain {
+    min-height: 22px;
+}
+
+.ant-btn,
+.ant-btn-primary {
+    box-shadow: unset;
+}
+
+.ant-btn,
+.ant-checkbox-inner,
+.ant-input,
+.ant-input-affix-wrapper {
+    border-radius: unset;
+}
+
+/*.ant-card-head {
+    border-bottom: unset;
+}*/
+
+.ant-dropdown-menu {
+    padding: unset;
+    border-radius: unset;
+}
+
+.ant-card-extra {
+    padding: unset;
+}
+
+/* ======================================================================== */
+
+.input-validation-error {
+    border-color: #FF4D4F !important;
+}
+
+.input-validation-text-error {
+    color: #FF4D4F !important;
+}
+
+.ant-dropdown-wrapper {
+    padding-left: unset;
+    padding-right: unset;
+    cursor: pointer;
+    position: relative;
+}
+
+    .ant-dropdown-wrapper .ant-dropdown {
+        display: none;
+    }
+
+    .ant-dropdown-wrapper:hover .ant-dropdown {
+        display: block;
+    }

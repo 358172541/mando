@@ -1,0 +1,225 @@
+
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+
+// @primary-color: #1890ff;
+/* You can add global styles to this file, and also import other style files */
+
+/* layout */
+.ant-layout {
+    background: unset;
+}
+
+.ant-layout-header {
+    height: 40px;
+    line-height: 40px;
+    padding: unset;
+}
+
+.ant-layout-sider-children {
+    padding: unset;
+}
+
+.ant-layout-sider-trigger {
+    height: 40px;
+    line-height: 40px;
+}
+
+.ant-layout-content {
+    /*border-left: 1px solid #f0f0f0;*/
+}
+
+.ant-layout-sider-zero-width-trigger {
+    color: #FFFFFFA6;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    right: -46px;
+    top: 0px;
+    width: 46px;
+}
+
+.ant-layout-sider-zero-width-trigger:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.ant-menu-dark .ant-menu-item:hover,
+.ant-menu-dark .ant-menu-submenu-title:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* menu */
+.ant-menu-inline,
+.ant-menu-vertical {
+    border-right: unset;
+}
+
+.ant-menu-vertical.ant-menu-sub,
+.ant-menu-vertical-left.ant-menu-sub,
+.ant-menu-vertical-right.ant-menu-sub {
+    min-width: 150px;
+}
+
+.ant-menu-inline .ant-menu-item,
+.ant-menu-inline .ant-menu-submenu-title {
+    margin-top: unset;
+    margin-bottom: unset;
+}
+
+.ant-menu-vertical .ant-menu-item,
+.ant-menu-vertical .ant-menu-submenu-title {
+    margin-top: unset;
+    margin-bottom: unset;
+    padding-right: unset;
+}
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-submenu,
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item {
+    padding: unset;
+    /*width: 160px;*/
+}
+
+.ant-menu-inline .ant-menu-item:not(:last-child) {
+    margin-bottom: unset;
+}
+
+.ant-menu-vertical .ant-menu-item:not(:last-child) {
+    margin-bottom: unset;
+}
+
+.ant-menu-submenu.ant-menu-submenu-placement-top {
+    bottom: 1px;
+}
+
+.ant-menu-submenu.ant-menu-submenu-placement-right {
+    left: 1px;
+}
+
+.ant-menu-submenu.ant-menu-submenu-placement-bottom {
+    top: 1px;
+}
+
+.ant-menu-submenu.ant-menu-submenu-placement-left {
+    right: 1px;
+}
+
+.ant-menu-item .anticon,
+.ant-menu-submenu-title .anticon {
+    font-size: 14px;
+}
+
+.ant-menu-item .anticon + span,
+.ant-menu-submenu-title .anticon + span {
+    margin-left: 12px;
+}
+
+.ant-menu-sub.ant-menu-inline,
+.ant-menu-dark .ant-menu-sub.ant-menu-inline {
+    background: unset;
+}
+
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item .anticon,
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .anticon {
+    font-size: 14px;
+}
+
+/* tabs */
+.ant-tabs-top > .ant-tabs-nav {
+    margin-bottom: unset;
+}
+
+.ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
+    margin-left: unset;
+}
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
+    border-left: unset;
+}
+
+.ant-tabs-content {
+    padding: 20px;
+}
+
+/* modal */
+
+.ant-modal-close-x {
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    width: 46px;
+}
+
+.ant-modal-body {
+    padding: 24px 16px;
+}
+
+.ant-modal-header {
+    padding: unset;
+}
+
+.ant-modal-title {
+    line-height: 40px;
+    padding-left: 16px;
+}
+
+/* form */
+
+.ant-form-item:last-child {
+    margin-bottom: unset;
+}
+
+.ant-form-item-explain,
+.ant-form-item-extra {
+    min-height: 24px;
+    line-height: 24px;
+}
+
+/* result */
+.ant-result {
+    padding: unset;
+}
+
+/* select */
+.ant-select-dropdown {
+    margin-top: unset;
+    margin-bottom: unset;
+    padding: unset;
+    border-radius: unset;
+}
+
+.ant-dropdown {
+    border-radius: unset;
+    margin: unset;
+    top: 1px;
+}
+
+.ant-dropdown-menu {
+    padding: unset;
+}
+
+.ant-dropdown-menu-item {
+    padding: unset 16px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.ant-dropdown-menu-item-divider {
+    margin: unset;
+}
+
+/* nz-tabs */
+.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu {
+    padding: unset;
+}
+
+.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item {
+    padding: unset 16px;
+}
+
+.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu .anticon {
+    margin-right: 12px;
+}

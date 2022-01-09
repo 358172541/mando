@@ -1,0 +1,128 @@
+﻿@page
+@using Mando.Localization
+@model Mando.Pages.Account.LoginModel
+@inject IHtmlLocalizer<LocalizationResource> HtmlLocalizer
+@inject IOptions<AbpMultiTenancyOptions> MultiTenancyOptions
+@inject ICurrentTenant CurrentTenant
+
+@{
+    ViewBag.Title = "LOGIN";
+}
+
+<div class="ant-layout" style="height:100vh">
+
+    <div class="ant-layout-content" style="display:grid;place-items:center">
+
+        <div class="ant-card ant-card-bordered" style="width:320px">
+            <div class="ant-card-head">
+                <div class="ant-card-head-wrapper">
+                    <div class="ant-card-head-title">
+                        @HtmlLocalizer["Login"]
+                    </div>
+                    <div class="ant-card-extra" style="padding-right:24px">
+                        @if (CurrentTenant.Id != null)
+                        {
+                            <span>@(CurrentTenant.Name ?? CurrentTenant.Id.Value.ToString())</span>
+                        }
+                    </div>
+                    <div class="ant-card-extra">
+                        <div class="ant-dropdown-wrapper ant-btn ant-btn-link">
+                            <span>@Model.Language.DisplayName</span>
+                            @*<div class="ant-dropdown">
+                                <ul class="ant-dropdown-menu" style="position:absolute">
+                                    @foreach (var lang in Model.Languages)
+                                    {
+                                        <li class="ant-dropdown-menu-item">
+                                            <a href="~/Abp/Languages/Switch?culture=@(lang.CultureName)&uiCulture=@(lang.UiCultureName)&returnUrl=@(WebUtility.UrlEncode(Request.GetEncodedPathAndQuery()))">
+                                                @lang.DisplayName
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ant-card-body">
+                <form method="post">
+
+                    <div class="ant-row ant-form-item ant-form-item-with-help">
+                        <label asp-for="Form.UserName"></label>
+                        <div class="ant-col-24 ant-form-item-control">
+                            <input asp-for="Form.UserName" class="ant-input" />
+                            <div class="ant-form-item-explain">
+                                <span asp-validation-for="Form.UserName" class="input-validation-text-error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ant-row ant-form-item ant-form-item-with-help">
+                        <label asp-for="Form.Password"></label>
+                        <div class="ant-col-24 ant-form-item-control">
+                            <input asp-for="Form.Password" class="ant-input" />
+                            <div class="ant-form-item-explain">
+                                <span asp-validation-for="Form.Password" class="input-validation-text-error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ant-row ant-form-item ant-form-item-with-help">
+                        <div class="ant-col-12 ant-form-item-control">
+                            <label class="ant-checkbox-wrapper">
+                                <span id="fr" class="@(Model.Form.Remember ? "ant-checkbox ant-checkbox-checked" : "ant-checkbox")">
+                                    <input asp-for="Form.Remember" class="ant-checkbox-input" />
+                                    <span class="ant-checkbox-inner"></span>
+                                </span>
+                                <span>@HtmlLocalizer["Remember"]</span>
+                            </label>
+                            <div class="ant-form-item-explain"></div>
+                        </div>
+                        <div class="ant-col-12 ant-form-item-control" style="text-align:right">
+                            @*<a href="@Url.Page("./Register", new { returnUrl = Model.ReturnUrl })">
+                                @HtmlLocalizer["Register"]
+                            </a>*@
+                            <div class="ant-form-item-explain"></div>
+                        </div>
+                    </div>
+
+                    <div class="ant-row ant-form-item ant-form-item-with-help">
+                        <div class="ant-col-24 ant-form-item-control">
+                            <button name="Action" value="Login" class="ant-btn ant-btn-primary" style="width:100%">
+                                @HtmlLocalizer["Login"]
+                            </button>
+                            <div class="ant-form-item-explain">
+                                <span class="input-validation-text-error">@ViewData["Message"]?.ToString()</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ant-row ant-form-item ant-form-item-with-help">
+                        <div class="ant-col-24 ant-form-item-control">
+                            <button name="Action" value="Cancel" formnovalidate="formnovalidate" class="ant-btn" style="width:100%">
+                                @HtmlLocalizer["Cancel"]
+                            </button>
+                            @*<div class="ant-form-item-explain"></div>*@
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+<script type="text/javascript">
+    $(function(){
+        $('#fr').click(function() {
+            if($('#Form_Remember').is(':checked')) {
+                $('#fr').addClass('ant-checkbox-checked');
+            } else {
+                $('#fr').removeClass('ant-checkbox-checked');
+            }
+        });
+    });
+</script>
+}

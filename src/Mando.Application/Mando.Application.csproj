@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Mando</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mando.Domain\Mando.Domain.csproj" />
+    <ProjectReference Include="..\Mando.Application.Contracts\Mando.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
