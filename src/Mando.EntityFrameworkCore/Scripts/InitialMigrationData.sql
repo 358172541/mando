@@ -18,6 +18,9 @@ DELETE FROM [dbo].[IdentityServerClientSecrets]
 DELETE FROM [dbo].[IdentityServerIdentityResources]
 DELETE FROM [dbo].[IdentityServerIdentityResourceClaims]
 
+/* Default.Authors */
+DELETE FROM [dbo].[AppAuthors];
+
 --
 
 INSERT INTO [dbo].[AbpClaimTypes] (
@@ -760,6 +763,64 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 	'd9fdb044-b415-5e3c-d1e3-3a0138d02be8',
 	NULL,
 	'AbpTenantManagement.Tenants.ManageConnectionStrings',
+	'R',
+	'admin'
+);
+
+/* Default.Authors */
+
+INSERT INTO [dbo].[AbpPermissionGrants] (
+	[Id],
+	[TenantId],
+	[Name],
+	[ProviderName],
+	[ProviderKey]
+) VALUES (
+	'05A33857-1E90-4FEF-9473-E880AD0AE1B1',
+	NULL,
+	'Default.Authors',
+	'R',
+	'admin'
+);
+
+INSERT INTO [dbo].[AbpPermissionGrants] (
+	[Id],
+	[TenantId],
+	[Name],
+	[ProviderName],
+	[ProviderKey]
+) VALUES (
+	'05A33857-1E90-4FEF-9473-E880AD0AE1B2',
+	NULL,
+	'Default.Authors.Create',
+	'R',
+	'admin'
+);
+
+INSERT INTO [dbo].[AbpPermissionGrants] (
+	[Id],
+	[TenantId],
+	[Name],
+	[ProviderName],
+	[ProviderKey]
+) VALUES (
+	'05A33857-1E90-4FEF-9473-E880AD0AE1B3',
+	NULL,
+	'Default.Authors.Update',
+	'R',
+	'admin'
+);
+
+INSERT INTO [dbo].[AbpPermissionGrants] (
+	[Id],
+	[TenantId],
+	[Name],
+	[ProviderName],
+	[ProviderKey]
+) VALUES (
+	'05A33857-1E90-4FEF-9473-E880AD0AE1B4',
+	NULL,
+	'Default.Authors.Delete',
 	'R',
 	'admin'
 );
@@ -1826,4 +1887,66 @@ INSERT INTO [dbo].[IdentityServerIdentityResourceClaims] (
 ) VALUES (
 	'role',
 	'1ef2ba33-e221-d435-1a7c-3a0138d02f17'
+);
+
+/* Default.Authors */
+
+INSERT INTO [dbo].[AppAuthors] (
+	[Id],
+	[Name],
+	[Birthday],
+	[Biography],
+	[ExtraProperties],
+	[ConcurrencyStamp],
+	[CreationTime],
+	[CreatorId],
+	[LastModificationTime],
+	[LastModifierId],
+	[IsDeleted],
+	[DeleterId],
+	[DeletionTime]
+) VALUES (
+	'45167A79-20F7-401A-9051-C1A4365B9246',
+	'Man',
+	'2022/2/2 2:22:22',
+	NULL,
+	'{}',
+	'1d669a9e9a1b42d4a5deb16eeb73ecza',
+	'2022/1/5 3:49:06',
+	NULL,
+	NULL,
+	NULL,
+	'False',
+	NULL,
+	NULL
+);
+
+INSERT INTO [dbo].[AppAuthors] (
+	[Id],
+	[Name],
+	[Birthday],
+	[Biography],
+	[ExtraProperties],
+	[ConcurrencyStamp],
+	[CreationTime],
+	[CreatorId],
+	[LastModificationTime],
+	[LastModifierId],
+	[IsDeleted],
+	[DeleterId],
+	[DeletionTime]
+) VALUES (
+	'45167A79-20F7-401A-9051-C1A4365B9247',
+	'Woman',
+	'2022/2/2 2:22:22',
+	NULL,
+	'{}',
+	'1d669a9e9a1b42d4a5deb16eeb73ecza',
+	'2022/1/5 3:49:06',
+	NULL,
+	NULL,
+	NULL,
+	'False',
+	NULL,
+	NULL
 );

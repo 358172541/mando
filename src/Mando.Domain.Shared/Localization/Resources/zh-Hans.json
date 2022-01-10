@@ -1,6 +1,10 @@
 {
   "culture": "zh-Hans",
   "texts": {
+
+    "Enum:BookType:0": "未指定",
+    "AuthorExists": "已存在同名的作者：{name}",
+
     "UserName": "用户名称",
     "EmailAddress": "邮箱地址",
     "UserNameOrEmailAddress": "用户名称或邮箱地址",

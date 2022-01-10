@@ -1,6 +1,10 @@
 {
   "culture": "en",
   "texts": {
+
+    "Enum:BookType:0": "Undefined",
+    "AuthorExists": "There is already an author with the same name: {name}",
+
     "UserName": "Username",
     "EmailAddress": "Email address",
     "UserNameOrEmailAddress": "Username or email address",

@@ -26,7 +26,7 @@ namespace Mando
         public override void ConfigureServices(ServiceConfigurationContext cntx)
         {
             cntx.Services
-                .AddAbpDbContext<MandoDbContext>(opts =>
+                .AddAbpDbContext<DefaultDbContext>(opts =>
                 {
                     opts.AddDefaultRepositories(includeAllEntities: true);
                 });

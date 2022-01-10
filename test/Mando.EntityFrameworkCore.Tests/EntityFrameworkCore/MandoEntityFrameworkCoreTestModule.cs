@@ -47,11 +47,11 @@ namespace Mando.EntityFrameworkCore
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
 
-            var options = new DbContextOptionsBuilder<MandoDbContext>()
+            var options = new DbContextOptionsBuilder<DefaultDbContext>()
                 .UseSqlite(connection)
                 .Options;
 
-            using (var context = new MandoDbContext(options))
+            using (var context = new DefaultDbContext(options))
             {
                 context.GetService<IRelationalDatabaseCreator>().CreateTables();
             }

@@ -1,11 +1,11 @@
-﻿using Volo.Abp.Application.Services;
+﻿using Volo.Abp.AspNetCore.Mvc;
 using LocalizationResource = Mando.Localization.LocalizationResource;
 
 namespace Mando
 {
-    public abstract class MandoAppService : ApplicationService
+    public abstract class HttpApiController : AbpController
     {
-        protected MandoAppService()
+        public HttpApiController()
         {
             LocalizationResource = typeof(LocalizationResource);
         }

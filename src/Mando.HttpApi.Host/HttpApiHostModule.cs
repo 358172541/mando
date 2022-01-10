@@ -138,10 +138,10 @@ namespace Mando
         {
             var cfgr = cntx.Services.GetConfiguration();
 
-            Configure<AbpAspNetCoreMvcOptions>(opts =>
-            {
-                opts.ConventionalControllers.Create(typeof(ApplicationModule).Assembly);
-            });
+            //Configure<AbpAspNetCoreMvcOptions>(opts =>
+            //{
+            //    opts.ConventionalControllers.Create(typeof(ApplicationModule).Assembly);
+            //});
 
             Configure<AbpLocalizationOptions>(opts =>
             {

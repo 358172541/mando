@@ -1,6 +1,6 @@
 ﻿namespace Mando
 {
-    public static class MandoConsts
+    public static class DomainConsts
     {
         public const string DbTablePrefix = "App";
 
