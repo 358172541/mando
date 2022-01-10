@@ -5,6 +5,8 @@ import {
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
+import { AuthorComponent } from './pages/author/author.component';
+import { BookComponent } from './pages/book/book.component';
 import { CrudComponent } from './pages/crud/crud.component';
 
 @Component({
@@ -158,7 +160,7 @@ export class AppComponent implements OnInit {
             name: 'A',
             icon: 'bars',
             title: '仪表盘',
-            component: CrudComponent,
+            component: AuthorComponent,
             closable: false
         },
         {
@@ -198,7 +200,7 @@ export class AppComponent implements OnInit {
             name: 'F',
             icon: 'bars',
             title: '系统设置',
-            component: CrudComponent,
+            component: BookComponent,
             closable: true
         }
     ];

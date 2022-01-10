@@ -35,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "application", "application", "{B8014CD8-E44B-4892-83AF-6308FF6A1BC1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "http", "http", "{69E49119-31F4-4040-AE78-7CEF0C139119}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{69E49119-31F4-4040-AE78-7CEF0C139119}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

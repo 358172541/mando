@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
     providers: [],
     selector: 'app-crud',
     styles: [],
-    template: `<div>crud page works - 好的老爷</div>`,
+    template: `<div>crud page works - 好的老爷 - ok</div>`,
 })
 export class CrudComponent {
 

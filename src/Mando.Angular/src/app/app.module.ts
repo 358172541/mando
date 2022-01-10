@@ -24,7 +24,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 import { AppComponent } from './app.component';
+import { BookComponent } from './pages/book/book.component';
 import { CrudComponent } from './pages/crud/crud.component';
+import { AuthorComponent } from './pages/author/author.component';
 import { TabComponent } from './components/tab.component';
 
 import { TabDirective } from './directives/tab.directive';
@@ -47,6 +49,8 @@ import { GithubOutline } from '@ant-design/icons-angular/icons';
     ],
     declarations: [
         AppComponent,
+        AuthorComponent,
+        BookComponent,
         CrudComponent,
         TabComponent,
         TabDirective
