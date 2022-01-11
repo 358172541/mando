@@ -38,7 +38,7 @@ namespace Mando.Pages.Account
                 var context = await IdentityServerInteractionService.GetLogoutContextAsync(logoutId);
 
                 if (context == null)
-                    return RedirectSafely("~/");
+                    return Redirect("~/");
 
                 if (CurrentUser.IsAuthenticated)
                 {
@@ -52,7 +52,7 @@ namespace Mando.Pages.Account
                     await SignInManager.SignOutAsync();
                 }
 
-                return RedirectSafely(context.PostLogoutRedirectUri);
+                return Redirect(context.PostLogoutRedirectUri);
             }
             else
             {
@@ -68,7 +68,7 @@ namespace Mando.Pages.Account
                     await SignInManager.SignOutAsync();
                 }
 
-                return RedirectSafely(ReturnUrl);
+                return Redirect(ReturnUrl);
             }
         }
     }

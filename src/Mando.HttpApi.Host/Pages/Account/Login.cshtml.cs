@@ -2,7 +2,6 @@ using IdentityServer4.Events;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
-using Mando.Localization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RequestLocalization;
@@ -21,6 +20,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Validation;
 using IdentityUser = Volo.Abp.Identity.IdentityUser;
+using LocalizationResource = Mando.Localization.LocalizationResource;
 
 namespace Mando.Pages.Account
 {
@@ -58,14 +58,14 @@ namespace Mando.Pages.Account
             IdentityServerInteractionService = identityServerInteractionService;
             IdentityUserManager = identityUserManager;
             SignInManager = signInManager;
-            LocalizationResourceType = typeof(Localization.LocalizationResource);
+            LocalizationResourceType = typeof(LocalizationResource);
         }
 
         private async Task GetLanguages()
         {
-            var langs = await LanguageProvider.GetLanguagesAsync();
-            var lang = langs.FindByCulture(CultureInfo.CurrentCulture.Name, CultureInfo.CurrentUICulture.Name);
-            if (lang == null)
+            var list = await LanguageProvider.GetLanguagesAsync();
+            var item = list.FindByCulture(CultureInfo.CurrentCulture.Name, CultureInfo.CurrentUICulture.Name);
+            if (item == null)
             {
                 var pvdr = HttpContext.RequestServices.GetRequiredService<IAbpRequestLocalizationOptionsProvider>();
                 var opts = await pvdr.GetLocalizationOptionsAsync();
@@ -73,10 +73,10 @@ namespace Mando.Pages.Account
                 var cultureName = check ? opts.DefaultRequestCulture.Culture.Name : CultureInfo.CurrentCulture.Name;
                 var uiCultureName = check ? opts.DefaultRequestCulture.UICulture.Name : CultureInfo.CurrentUICulture.Name;
                 var uiCultureDiaplayName = check ? opts.DefaultRequestCulture.UICulture.DisplayName : CultureInfo.CurrentUICulture.DisplayName;
-                lang = new LanguageInfo(cultureName, uiCultureName, uiCultureDiaplayName);
+                item = new LanguageInfo(cultureName, uiCultureName, uiCultureDiaplayName);
             }
-            Language = lang;
-            Languages = langs.Where(l => l != lang).ToList();
+            Language = item;
+            Languages = list.Where(l => l != item).ToList();
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -111,11 +111,11 @@ namespace Mando.Pages.Account
             if (action == "Cancel")
             {
                 if (context == null)
-                    return RedirectSafely("~/");
+                    return Redirect("~/");
 
                 await IdentityServerInteractionService.DenyAuthorizationAsync(context, AuthorizationError.AccessDenied);
 
-                return RedirectSafely(ReturnUrl);
+                return Redirect(ReturnUrl);
             }
 
             ValidateModel();
@@ -155,7 +155,7 @@ namespace Mando.Pages.Account
 
             await EventService.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id.ToString(), user.UserName));
 
-            return RedirectSafely(ReturnUrl);
+            return RedirectSafely(ReturnUrl); // safely
         }
 
         public class LoginForm

@@ -21,9 +21,9 @@
     border-radius: unset;
 }
 
-/*.ant-card-head {
-    border-bottom: unset;
-}*/
+.ant-card-head {
+    /*border-bottom: unset;*/
+}
 
 .ant-dropdown-menu {
     padding: unset;

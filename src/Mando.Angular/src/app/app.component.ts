@@ -1,5 +1,5 @@
 import {
-    AuthService, ConfigStateService, CurrentTenantDto,
+    AuthService, CurrentUserDto, ConfigStateService, CurrentTenantDto,
     LanguageInfo, LocalizationService, SessionStateService, SubscriptionService
 } from '@abp/ng.core';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
@@ -16,7 +16,7 @@ import { CrudComponent } from './pages/crud/crud.component';
     selector: 'app',
     styles: [
         `.app-layout { height: 100vh; }`,
-        `.app-sider-logo { color: #FFFFFFA6; height: 40px; padding-left: 16px; display: flex; align-items: center; }`
+        `.app-sider-logo { height: 58px; padding-left: 16px; display: flex; align-items: center; }`
     ],
     template: `
 <!--
@@ -45,9 +45,12 @@ import { CrudComponent } from './pages/crud/crud.component';
                       [nzCollapsedWidth]="collapsedWidth"
                       (nzCollapsedChange)="detectRef(tabList[selectedIndex].name)"
                       *ngIf="hasLoggedIn && menuMode==='side'">
+
+                <!-- should be component -->
                 <div class="app-sider-logo">
-                    <i nz-icon nzType="github" nzTheme="outline"></i>
+                    <i nz-icon nzType="field-string" nzTheme="outline" style="color:white;font-size:30px"></i>
                 </div>
+
                 <ul nz-menu nzMode="inline" nzTheme="dark">
                     <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menuList }"></ng-container>
                     <ng-template #menuTpl let-menuList>
@@ -81,16 +84,42 @@ import { CrudComponent } from './pages/crud/crud.component';
 
                 <nz-header *ngIf="!hasLoggedIn">
                     <nz-layout>
-                        <nz-sider nzCollapsible [(nzCollapsed)]="collapsed" [nzCollapsedWidth]="48" [nzTrigger]="null">
+                        <nz-sider nzCollapsible [(nzCollapsed)]="collapsed" [nzCollapsedWidth]="collapsedWidth" [nzTrigger]="null">
+
+                            <!-- should be component -->
                             <div class="app-sider-logo">
-                                <i nz-icon nzType="bars"></i>
+                                <i nz-icon nzType="field-string" nzTheme="outline" style="color:white;font-size:30px"></i>
+                            </div>
+
+                        </nz-sider>
+                        <nz-content></nz-content>
+
+                        <!-- should be component -->
+                        <nz-sider>
+                            <div nz-row nzJustify="end">
+                                <div nz-dropdown [nzDropdownMenu]="langDropdownMenu" nzPlacement="bottomRight"
+                                     style="height:58px;margin-right:16px;display:grid;place-items:center;">
+                                    <i nz-icon nzType="font-size" nzTheme="outline" style="color:white"></i>
+                                </div>
+                                <nz-dropdown-menu #langDropdownMenu="nzDropdownMenu">
+                                    <ul nz-menu>
+                                        <li nz-menu-item
+                                            *ngFor="let item of (languages$ | async)"
+                                            [nzSelected]="item.cultureName===(currentLanguage$ | async)"
+                                            (click)="changeLanguage(item.cultureName)"
+                                        >
+                                            {{ item.displayName }}
+                                        </li>
+                                    </ul>
+                                </nz-dropdown-menu>
                             </div>
                         </nz-sider>
+
                     </nz-layout>
                 </nz-header>
 
                 <nz-content style="display:grid;place-items:center" *ngIf="!hasLoggedIn">
-                    <nz-result nzStatus="403" nzTitle="401" nzSubTitle="Sorry, you are not authorized to access this page.就是不显示中文">
+                    <nz-result nzStatus="403" nzTitle="" nzSubTitle="">
                         <div nz-result-extra>
                             <button nz-button nzType="primary" (click)="goToLogin()">Go to Login</button>
                         </div>
@@ -100,20 +129,39 @@ import { CrudComponent } from './pages/crud/crud.component';
                 <nz-header *ngIf="hasLoggedIn">
                     <nz-layout>
                         <nz-content></nz-content>
+
                         <nz-sider>
                             <div nz-row nzJustify="end">
-                                <div nz-dropdown [nzDropdownMenu]="menu2" nzPlacement="bottomRight"
-                                     style="height:40px;margin-right:16px;display:grid;place-items:center;">
-                                    <nz-avatar [nzGap]="1" [nzText]="'Edward'" [nzSize]="30"></nz-avatar>
+                                <div nz-dropdown [nzDropdownMenu]="userDropdownMenu" nzPlacement="bottomRight"
+                                     style="height:58px;margin-right:16px;display:grid;place-items:center;">
+                                    <nz-avatar [nzGap]="1" [nzText]="(currentUser$ | async)?.userName" [nzSize]="30">
+                                        <!--{{ (selectedTenant$ | async)?.name }}-->
+                                    </nz-avatar>
                                 </div>
-                                <nz-dropdown-menu #menu2="nzDropdownMenu">
+                                <nz-dropdown-menu #userDropdownMenu="nzDropdownMenu">
                                     <ul nz-menu>
-                                        <li nz-menu-item>个人中心</li>
-                                        <li nz-menu-item>个人设置</li>
                                         <li nz-menu-divider></li>
-                                        <li nz-menu-item>退出登录</li>
+                                        <li nz-menu-item (click)="logout()">退出登录</li>
                                     </ul>
                                 </nz-dropdown-menu>
+
+                                <!-- should be component -->
+                                <div nz-dropdown [nzDropdownMenu]="langDropdownMenu" nzPlacement="bottomRight"
+                                     style="height:58px;margin-right:16px;display:grid;place-items:center;">
+                                    <i nz-icon nzType="font-size" nzTheme="outline" style="color:white"></i>
+                                </div>
+                                <nz-dropdown-menu #langDropdownMenu="nzDropdownMenu">
+                                    <ul nz-menu>
+                                        <li nz-menu-item
+                                            *ngFor="let item of (languages$ | async)"
+                                            [nzSelected]="item.cultureName===(currentLanguage$ | async)"
+                                            (click)="changeLanguage(item.cultureName)"
+                                        >
+                                            {{ item.displayName }}
+                                        </li>
+                                    </ul>
+                                </nz-dropdown-menu>
+
                             </div>
                         </nz-sider>
                     </nz-layout>
@@ -125,6 +173,7 @@ import { CrudComponent } from './pages/crud/crud.component';
                                 [nzTitle]="titleTpl"
                                 (nzClick)="selectTab(item.name)"
                                 (nzContextmenu)="reloadTab(item.name)">
+
                             <ng-template #titleTpl>
                                 <i nz-icon [nzType]="item.icon"></i>
                                 <span>{{ item.title }}</span>
@@ -147,8 +196,11 @@ import { CrudComponent } from './pages/crud/crud.component';
 })
 export class AppComponent implements OnInit {
 
+    currentUser$: Observable<CurrentUserDto> = this.configStateService.getOne$('currentUser');
+    selectedTenant$ = this.sessionStateService.getTenant$();
+
     collapsed = false;
-    collapsedWidth = 0; // 0 or 46
+    collapsedWidth = 0; // 0 or 62
     menuList = [];
     menuMode = 'side'; // side or top
     selectedIndex = 0;
@@ -361,10 +413,10 @@ export class AppComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private changeDetectorRef: ChangeDetectorRef,
-        //private configStateService: ConfigStateService,
+        private configStateService: ConfigStateService,
         //private localizationService: LocalizationService,
         private oAuthService: OAuthService,
-        //private sessionStateService: SessionStateService,
+        private sessionStateService: SessionStateService,
         //private subscriptionService: SubscriptionService
     ) {
         //this.changeLanguageSubscription();
@@ -376,6 +428,10 @@ export class AppComponent implements OnInit {
 
     goToLogin(): void {
         this.authService.navigateToLogin();
+    }
+
+    logout(): void {
+        this.authService.logout().subscribe();
     }
 
     ngOnInit(): void {
@@ -394,17 +450,15 @@ export class AppComponent implements OnInit {
         }
     }
 
-    /*currentTenant$: Observable<CurrentTenantDto> = this.sessionStateService.getTenant$();*/
-
     visible: boolean = true;
 
-    //languages$: Observable<LanguageInfo[]> = this.configStateService.getDeep$('localization.languages');
+    languages$: Observable<LanguageInfo[]> = this.configStateService.getDeep$('localization.languages');
 
-    //currentLanguage$: Observable<string> = this.sessionStateService.getLanguage$();
+    currentLanguage$: Observable<string> = this.sessionStateService.getLanguage$();
 
-    //changeLanguage(cultureName: string): void {
-    //    this.sessionStateService.setLanguage(cultureName);
-    //}
+    changeLanguage(cultureName: string): void {
+        this.sessionStateService.setLanguage(cultureName);
+    }
 
     //changeLanguageSubscription(): void {
     //    this.subscriptionService.addOne(this.localizationService.languageChange$, () => {
