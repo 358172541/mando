@@ -14,10 +14,10 @@ using Volo.Abp.TenantManagement.EntityFrameworkCore;
 namespace Mando
 {
     [ConnectionStringName("Default")]
-    public class DefaultDbContext : AbpDbContext<DefaultDbContext>
+    public class AppDbContext : AbpDbContext<AppDbContext>
     {
-        public DefaultDbContext(
-            DbContextOptions<DefaultDbContext> opts)
+        public AppDbContext(
+            DbContextOptions<AppDbContext> opts)
             : base(opts)
         {
         }

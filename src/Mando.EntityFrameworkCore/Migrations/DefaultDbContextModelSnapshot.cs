@@ -9,7 +9,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Mando.Migrations
 {
-    [DbContext(typeof(DefaultDbContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class DefaultDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

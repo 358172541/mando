@@ -9,9 +9,9 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Mando.App.Books
 {
-    public class BookRepository : EfCoreRepository<DefaultDbContext, Book, Guid>, IBookRepository
+    public class BookRepository : EfCoreRepository<AppDbContext, Book, Guid>, IBookRepository
     {
-        public BookRepository(IDbContextProvider<DefaultDbContext> provider)
+        public BookRepository(IDbContextProvider<AppDbContext> provider)
             : base(provider)
         {
         }

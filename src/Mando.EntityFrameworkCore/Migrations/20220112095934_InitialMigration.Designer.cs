@@ -10,7 +10,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Mando.Migrations
 {
-    [DbContext(typeof(DefaultDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20220112095934_InitialMigration")]
     partial class InitialMigration
     {

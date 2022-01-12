@@ -9,9 +9,9 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Mando.App.Authors
 {
-    public class AuthorRepository : EfCoreRepository<DefaultDbContext, Author, Guid>, IAuthorRepository
+    public class AuthorRepository : EfCoreRepository<AppDbContext, Author, Guid>, IAuthorRepository
     {
-        public AuthorRepository(IDbContextProvider<DefaultDbContext> provider)
+        public AuthorRepository(IDbContextProvider<AppDbContext> provider)
             : base(provider)
         {
         }

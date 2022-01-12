@@ -4,7 +4,7 @@ using LocalizationResource = Mando.Localization.LocalizationResource;
 
 namespace Mando
 {
-    public class DefaultPermissionDefinitionProvider : PermissionDefinitionProvider
+    public class AppPermissionDefinitionProvider : PermissionDefinitionProvider
     {
         public override void Define(IPermissionDefinitionContext cntx)
         {

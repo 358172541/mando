@@ -209,10 +209,27 @@ export class AppComponent implements OnInit {
     private src = [
         {
             parentName: null,
+            name: 'X',
+            icon: 'bars',
+            title: '作者管理',
+            component: AuthorComponent,
+            closable: true
+        },
+        {
+            parentName: null,
+            name: 'Y',
+            icon: 'bars',
+            title: '书籍管理',
+            component: BookComponent,
+            closable: true
+        },
+/*
+        {
+            parentName: null,
             name: 'A',
             icon: 'bars',
             title: '仪表盘',
-            component: AuthorComponent,
+            component: CrudComponent,
             closable: false
         },
         {
@@ -252,9 +269,10 @@ export class AppComponent implements OnInit {
             name: 'F',
             icon: 'bars',
             title: '系统设置',
-            component: BookComponent,
+            component: CrudComponent,
             closable: true
         }
+*/
     ];
 
     private structSrc(name: string, src: any[]): any[] {

@@ -37,47 +37,38 @@ import { format } from 'date-fns';
             </tbody>
         </nz-table>
 
-        <button nz-button nzType="primary" (click)="createAuthor()">
-            {{ 'AbpUi::Create' | abpLocalization }}
-        </button>
+        <button nz-button nzType="primary" (click)="createAuthor()">新增</button>
 
-        <nz-modal nzTitle="Create" [nzFooter]="null" [(nzVisible)]="createAuthorModalVisible" (nzOnCancel)="createAuthorModalVisible = false">
+        <nz-modal nzTitle="新增"  [nzWidth]="320" [nzFooter]="null"
+            [(nzVisible)]="createAuthorModalVisible" (nzOnCancel)="createAuthorModalVisible = false"
+        >
             <ng-container *nzModalContent>
-                <form nz-form [formGroup]="createAuthorFormGroup" (ngSubmit)="createAuthorSubmit()">
+                <form nz-form [formGroup]="createAuthorFormGroup" (ngSubmit)="createAuthorSubmit()" nzLayout="vertical">
 
                     <nz-form-item>
-                        <nz-form-label [nzSm]="5" [nzXs]="24" nzRequired>name</nz-form-label>
-                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="required">
+                        <nz-form-label nzRequired>名称</nz-form-label>
+                        <nz-form-control nzErrorTip="字段名称不可为空">
                             <input nz-input formControlName="name" />
                         </nz-form-control>
                     </nz-form-item>
-<!--
+
                     <nz-form-item>
-                        <nz-form-label [nzSm]="5" [nzXs]="24" nzRequired>Type</nz-form-label>
-                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="required">
-                            <nz-select formControlName="type">
-                                <nz-option [nzValue]="item.value" [nzLabel]="item.key" *ngFor="let item of authorTypeOptions"></nz-option>
-                            </nz-select>
-                        </nz-form-control>
-                    </nz-form-item>
--->
-                    <nz-form-item>
-                        <nz-form-label [nzSm]="5" [nzXs]="24" nzRequired>birthday</nz-form-label>
-                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="required">
-                            <nz-date-picker formControlName="birthday" [ngStyle]="{ width: '100%' }"></nz-date-picker>
+                        <nz-form-label nzRequired>生日</nz-form-label>
+                        <nz-form-control nzErrorTip="字段生日不可为空">
+                            <nz-date-picker formControlName="birthday"></nz-date-picker>
                         </nz-form-control>
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSm]="5" [nzXs]="24">biography</nz-form-label>
-                        <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <nz-form-label>简介</nz-form-label>
+                        <nz-form-control>
                             <textarea nz-input formControlName="biography" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
                         </nz-form-control>
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-control [nzSpan]="14" [nzOffset]="5">
-                            <button nz-button nzSize="middle" nzType="primary">Submit</button>
+                        <nz-form-control>
+                            <button nz-button nzBlock nzType="primary">提交</button>
                         </nz-form-control>
                     </nz-form-item>
 
@@ -85,43 +76,34 @@ import { format } from 'date-fns';
             </ng-container>
         </nz-modal>
 
-        <nz-modal nzTitle="Update" [nzFooter]="null" [(nzVisible)]="updateAuthorModalVisible" (nzOnCancel)="updateAuthorModalVisible = false">
+        <nz-modal nzTitle="编辑"  [nzWidth]="320" [nzFooter]="null" [(nzVisible)]="updateAuthorModalVisible" (nzOnCancel)="updateAuthorModalVisible = false">
             <ng-container *nzModalContent>
-                <form nz-form [formGroup]="updateAuthorFormGroup" (ngSubmit)="updateAuthorSubmit()">
+                <form nz-form [formGroup]="updateAuthorFormGroup" (ngSubmit)="updateAuthorSubmit()"  nzLayout="vertical">
 
                     <nz-form-item>
-                        <nz-form-label [nzSm]="5" [nzXs]="24" nzRequired>name</nz-form-label>
-                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="required">
+                        <nz-form-label nzRequired>名称</nz-form-label>
+                        <nz-form-control nzErrorTip="字段名称不可为空">
                             <input nz-input formControlName="name" />
                         </nz-form-control>
                     </nz-form-item>
-<!--
+
                     <nz-form-item>
-                        <nz-form-label [nzSm]="5" [nzXs]="24" nzRequired>Type</nz-form-label>
-                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="required">
-                            <nz-select formControlName="type">
-                                <nz-option [nzValue]="item.value" [nzLabel]="item.key" *ngFor="let item of authorTypeOptions"></nz-option>
-                            </nz-select>
-                        </nz-form-control>
-                    </nz-form-item>
--->
-                    <nz-form-item>
-                        <nz-form-label [nzSm]="5" [nzXs]="24" nzRequired>birthday</nz-form-label>
-                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="required">
-                            <nz-date-picker formControlName="birthday" [ngStyle]="{ width: '100%' }"></nz-date-picker>
+                        <nz-form-label nzRequired>生日</nz-form-label>
+                        <nz-form-control nzErrorTip="字段生日不可为空">
+                            <nz-date-picker formControlName="birthday"></nz-date-picker>
                         </nz-form-control>
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-label [nzSm]="5" [nzXs]="24">biography</nz-form-label>
-                        <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <nz-form-label>简介</nz-form-label>
+                        <nz-form-control>
                             <textarea nz-input formControlName="biography" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
                         </nz-form-control>
                     </nz-form-item>
 
                     <nz-form-item>
-                        <nz-form-control [nzSpan]="14" [nzOffset]="5">
-                            <button nz-button nzSize="middle" nzType="primary">提交</button>
+                        <nz-form-control>
+                            <button nz-button nzBlock nzType="primary">提交</button>
                         </nz-form-control>
                     </nz-form-item>
 
