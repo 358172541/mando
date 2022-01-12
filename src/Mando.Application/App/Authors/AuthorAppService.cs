@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Mando.App.Authors
 {
-    [Authorize("Default.Authors")]
+    [Authorize("App.Authors")]
     public class AuthorAppService : AppService, IAuthorAppService
     {
         private readonly AuthorManager _authorManager;
@@ -41,7 +41,7 @@ namespace Mando.App.Authors
             );
         }
 
-        [Authorize("Default.Authors.Create")]
+        [Authorize("App.Authors.Create")]
         public async Task<AuthorDto> CreateAsync(AuthorCreateDto input)
         {
             var author = await _authorManager.CreateAsync(input.Name, input.Birthday, input.Biography);
@@ -51,7 +51,7 @@ namespace Mando.App.Authors
             return ObjectMapper.Map<Author, AuthorDto>(author);
         }
 
-        [Authorize("Default.Authors.Update")]
+        [Authorize("App.Authors.Update")]
         public async Task UpdateAsync(Guid id, AuthorUpdateDto input)
         {
             var author = await _authorRepository.GetAsync(id);
@@ -64,7 +64,7 @@ namespace Mando.App.Authors
             await _authorRepository.UpdateAsync(author);
         }
 
-        [Authorize("Default.Authors.Delete")]
+        [Authorize("App.Authors.Delete")]
         public async Task DeleteAsync(Guid id)
         {
             await _authorRepository.DeleteAsync(id);

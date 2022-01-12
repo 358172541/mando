@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App\Books\AuthorLookupDto.cs~RF19ad5ba9.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="4.4.4" />
     <PackageReference Include="Volo.Abp.Identity.Application.Contracts" Version="4.4.4" />
     <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" Version="4.4.4" />

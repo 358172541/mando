@@ -18,8 +18,9 @@ DELETE FROM [dbo].[IdentityServerClientSecrets]
 DELETE FROM [dbo].[IdentityServerIdentityResources]
 DELETE FROM [dbo].[IdentityServerIdentityResourceClaims]
 
-/* Default.Authors */
+/* App */
 DELETE FROM [dbo].[AppAuthors];
+DELETE FROM [dbo].[AppBooks];
 
 --
 
@@ -767,7 +768,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 	'admin'
 );
 
-/* Default.Authors */
+/* App */
 
 INSERT INTO [dbo].[AbpPermissionGrants] (
 	[Id],
@@ -778,7 +779,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B1',
 	NULL,
-	'Default.Authors',
+	'App.Authors',
 	'R',
 	'admin'
 );
@@ -792,7 +793,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B2',
 	NULL,
-	'Default.Authors.Create',
+	'App.Authors.Create',
 	'R',
 	'admin'
 );
@@ -806,7 +807,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B3',
 	NULL,
-	'Default.Authors.Update',
+	'App.Authors.Update',
 	'R',
 	'admin'
 );
@@ -820,7 +821,63 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B4',
 	NULL,
-	'Default.Authors.Delete',
+	'App.Authors.Delete',
+	'R',
+	'admin'
+);
+
+INSERT INTO [dbo].[AbpPermissionGrants] (
+	[Id],
+	[TenantId],
+	[Name],
+	[ProviderName],
+	[ProviderKey]
+) VALUES (
+	'05A33857-1E90-4FEF-9473-E880AD0AE1B5',
+	NULL,
+	'App.Books',
+	'R',
+	'admin'
+);
+
+INSERT INTO [dbo].[AbpPermissionGrants] (
+	[Id],
+	[TenantId],
+	[Name],
+	[ProviderName],
+	[ProviderKey]
+) VALUES (
+	'05A33857-1E90-4FEF-9473-E880AD0AE1B6',
+	NULL,
+	'App.Books.Create',
+	'R',
+	'admin'
+);
+
+INSERT INTO [dbo].[AbpPermissionGrants] (
+	[Id],
+	[TenantId],
+	[Name],
+	[ProviderName],
+	[ProviderKey]
+) VALUES (
+	'05A33857-1E90-4FEF-9473-E880AD0AE1B7',
+	NULL,
+	'App.Books.Update',
+	'R',
+	'admin'
+);
+
+INSERT INTO [dbo].[AbpPermissionGrants] (
+	[Id],
+	[TenantId],
+	[Name],
+	[ProviderName],
+	[ProviderKey]
+) VALUES (
+	'05A33857-1E90-4FEF-9473-E880AD0AE1B8',
+	NULL,
+	'App.Books.Delete',
 	'R',
 	'admin'
 );
@@ -1940,6 +1997,40 @@ INSERT INTO [dbo].[AppAuthors] (
 	'Woman',
 	'2022/2/2 2:22:22',
 	NULL,
+	'{}',
+	'1d669a9e9a1b42d4a5deb16eeb73ecza',
+	'2022/1/5 3:49:06',
+	NULL,
+	NULL,
+	NULL,
+	'False',
+	NULL,
+	NULL
+);
+
+INSERT INTO [dbo].[AppBooks] (
+	[Id],
+	[AuthorId],
+	[Name],
+	[Type],
+	[PublishDate],
+	[Price],
+	[ExtraProperties],
+	[ConcurrencyStamp],
+	[CreationTime],
+	[CreatorId],
+	[LastModificationTime],
+	[LastModifierId],
+	[IsDeleted],
+	[DeleterId],
+	[DeletionTime]        
+) VALUES (
+	'A0F5A862-EE91-4A3E-B351-9921A64CBE1C',
+	'45167A79-20F7-401A-9051-C1A4365B9247',
+	'Programing',
+	1,
+	'2022/2/2 2:22:22',
+	1.1,
 	'{}',
 	'1d669a9e9a1b42d4a5deb16eeb73ecza',
 	'2022/1/5 3:49:06',

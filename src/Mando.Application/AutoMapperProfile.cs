@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Mando.App.Authors;
+using Mando.App.Books;
 
 namespace Mando
 {
@@ -8,6 +9,10 @@ namespace Mando
         public AutoMapperProfile()
         {
             CreateMap<Author, AuthorDto>();
+
+            CreateMap<Book, BookDto>();
+
+            CreateMap<Author, AuthorLookupDto>();
         }
     }
 }

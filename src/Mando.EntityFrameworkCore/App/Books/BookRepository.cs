@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
-namespace Mando.App.Authors
+namespace Mando.App.Books
 {
-    public class AuthorRepository : EfCoreRepository<DefaultDbContext, Author, Guid>, IAuthorRepository
+    public class BookRepository : EfCoreRepository<DefaultDbContext, Book, Guid>, IBookRepository
     {
-        public AuthorRepository(IDbContextProvider<DefaultDbContext> provider)
+        public BookRepository(IDbContextProvider<DefaultDbContext> provider)
             : base(provider)
         {
         }
 
-        public async Task<Author> FindByNameAsync(string name)
+        public async Task<Book> FindByNameAsync(string name)
         {
             var dbSet = await GetDbSetAsync();
 
             return await dbSet.FirstOrDefaultAsync(x => x.Name == name);
         }
 
-        public async Task<List<Author>> GetListAsync(int skipCount, int maxResultCount, string sorting, string filter = null)
+        public async Task<List<Book>> GetListAsync(int skipCount, int maxResultCount, string sorting, string filter = null)
         {
             var dbSet = await GetDbSetAsync();
 

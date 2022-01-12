@@ -1,4 +1,5 @@
 ﻿using Mando.App.Authors;
+using Mando.App.Books;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -26,12 +27,30 @@ namespace Mando
         {
             budr.Entity<Author>(budr =>
             {
-                budr.ToTable(DomainConsts.DbTablePrefix + "Authors", DomainConsts.DbSchema);
+                budr.ToTable("AppAuthors");
                 budr.ConfigureByConvention();
                 budr.Property(x => x.Name)
                     .IsRequired()
                     .HasMaxLength(AuthorConsts.NameMaxLength);
                 budr.HasIndex(x => x.Name);
+            });
+        }
+
+        public DbSet<Book> Books { get; set; }
+        private static void ConfiguureBook(ModelBuilder budr)
+        {
+            budr.Entity<Book>(budr =>
+            {
+                budr.ToTable("AppBooks");
+                budr.ConfigureByConvention();
+                budr.Property(x => x.Name)
+                    .IsRequired()
+                    .HasMaxLength(BookConsts.NameMaxLength);
+                budr.HasIndex(x => x.Name);
+                budr.HasOne<Author>()
+                    .WithMany()
+                    .HasForeignKey(x => x.AuthorId)
+                    .IsRequired();
             });
         }
 
@@ -47,6 +66,7 @@ namespace Mando
             budr.ConfigureTenantManagement();
 
             ConfigureAuthor(budr);
+            ConfiguureBook(budr);
         }
     }
 }
