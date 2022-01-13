@@ -17,6 +17,5 @@ namespace Mando
         )]
     public class ApplicationContractsModule : AbpModule
     {
-
     }
 }

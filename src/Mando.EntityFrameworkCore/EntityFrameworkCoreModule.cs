@@ -14,9 +14,9 @@ namespace Mando
     [DependsOn(
         typeof(DomainModule),
         typeof(AbpEntityFrameworkCoreSqlServerModule),
-        typeof(AbpFeatureManagementEntityFrameworkCoreModule),
         typeof(AbpIdentityEntityFrameworkCoreModule),
         typeof(AbpIdentityServerEntityFrameworkCoreModule),
+        typeof(AbpFeatureManagementEntityFrameworkCoreModule),
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpSettingManagementEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule)
