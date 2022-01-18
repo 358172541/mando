@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Mando.Application.Contracts\Mando.Application.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="App\Track\" />
+  </ItemGroup>
+
 </Project>

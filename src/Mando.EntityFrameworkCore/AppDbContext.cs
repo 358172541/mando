@@ -1,5 +1,5 @@
-﻿using Mando.App.Authors;
-using Mando.App.Books;
+﻿using Mando.App.Store;
+using Mando.App.Track;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -96,26 +96,24 @@ namespace Mando
         public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
         #endregion
 
+        #region Store
         public DbSet<Author> Authors { get; set; }
-        private static void ConfigureAuthor(ModelBuilder budr)
+        public DbSet<Book> Books { get; set; }
+        private static void ConfigureStore(ModelBuilder budr)
         {
             budr.Entity<Author>(budr =>
             {
-                budr.ToTable("AppAuthors");
+                budr.ToTable("AppStoreAuthors");
                 budr.ConfigureByConvention();
                 budr.Property(x => x.Name)
                     .IsRequired()
                     .HasMaxLength(AuthorConsts.NameMaxLength);
                 budr.HasIndex(x => x.Name);
             });
-        }
 
-        public DbSet<Book> Books { get; set; }
-        private static void ConfigureBook(ModelBuilder budr)
-        {
             budr.Entity<Book>(budr =>
             {
-                budr.ToTable("AppBooks");
+                budr.ToTable("AppStoreBooks");
                 budr.ConfigureByConvention();
                 budr.Property(x => x.Name)
                     .IsRequired()
@@ -127,6 +125,22 @@ namespace Mando
                     .IsRequired();
             });
         }
+        #endregion
+
+        #region Track
+        public DbSet<Issue> Issues { get; set; }
+        private static void ConfigureTrack(ModelBuilder budr)
+        {
+            budr.Entity<Issue>(budr =>
+            {
+                budr.ToTable("AppTrackIssues");
+                budr.ConfigureByConvention();
+                budr.Property(x => x.Title)
+                    .IsRequired()
+                    .HasMaxLength(IssueConsts.TitleMaxLength);
+            });
+        }
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder budr)
         {
@@ -139,8 +153,8 @@ namespace Mando
             budr.ConfigureSettingManagement();
             budr.ConfigureTenantManagement();
 
-            ConfigureAuthor(budr);
-            ConfigureBook(budr);
+            ConfigureStore(budr);
+            ConfigureTrack(budr);
         }
     }
 }

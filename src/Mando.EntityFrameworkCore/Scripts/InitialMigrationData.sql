@@ -18,9 +18,11 @@ DELETE FROM [dbo].[IdentityServerClientSecrets]
 DELETE FROM [dbo].[IdentityServerIdentityResources]
 DELETE FROM [dbo].[IdentityServerIdentityResourceClaims]
 
-/* App */
-DELETE FROM [dbo].[AppAuthors];
-DELETE FROM [dbo].[AppBooks];
+/* AppStore */
+DELETE FROM [dbo].[AppStoreAuthors];
+DELETE FROM [dbo].[AppStoreBooks];
+
+/* AppTrack */
 
 --
 
@@ -768,7 +770,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 	'admin'
 );
 
-/* App */
+/* AppStore */
 
 INSERT INTO [dbo].[AbpPermissionGrants] (
 	[Id],
@@ -779,7 +781,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B1',
 	NULL,
-	'App.Authors',
+	'App.Store.Authors',
 	'R',
 	'admin'
 );
@@ -793,7 +795,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B2',
 	NULL,
-	'App.Authors.Create',
+	'App.Store.Authors.Create',
 	'R',
 	'admin'
 );
@@ -807,7 +809,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B3',
 	NULL,
-	'App.Authors.Update',
+	'App.Store.Authors.Update',
 	'R',
 	'admin'
 );
@@ -821,7 +823,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B4',
 	NULL,
-	'App.Authors.Delete',
+	'App.Store.Authors.Delete',
 	'R',
 	'admin'
 );
@@ -835,7 +837,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B5',
 	NULL,
-	'App.Books',
+	'App.Store.Books',
 	'R',
 	'admin'
 );
@@ -849,7 +851,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B6',
 	NULL,
-	'App.Books.Create',
+	'App.Store.Books.Create',
 	'R',
 	'admin'
 );
@@ -863,7 +865,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B7',
 	NULL,
-	'App.Books.Update',
+	'App.Store.Books.Update',
 	'R',
 	'admin'
 );
@@ -877,7 +879,7 @@ INSERT INTO [dbo].[AbpPermissionGrants] (
 ) VALUES (
 	'05A33857-1E90-4FEF-9473-E880AD0AE1B8',
 	NULL,
-	'App.Books.Delete',
+	'App.Store.Books.Delete',
 	'R',
 	'admin'
 );
@@ -1946,9 +1948,9 @@ INSERT INTO [dbo].[IdentityServerIdentityResourceClaims] (
 	'1ef2ba33-e221-d435-1a7c-3a0138d02f17'
 );
 
-/* Default.Authors */
+/* AppStore */
 
-INSERT INTO [dbo].[AppAuthors] (
+INSERT INTO [dbo].[AppStoreAuthors] (
 	[Id],
 	[Name],
 	[Birthday],
@@ -1978,7 +1980,7 @@ INSERT INTO [dbo].[AppAuthors] (
 	NULL
 );
 
-INSERT INTO [dbo].[AppAuthors] (
+INSERT INTO [dbo].[AppStoreAuthors] (
 	[Id],
 	[Name],
 	[Birthday],
@@ -2008,7 +2010,7 @@ INSERT INTO [dbo].[AppAuthors] (
 	NULL
 );
 
-INSERT INTO [dbo].[AppBooks] (
+INSERT INTO [dbo].[AppStoreBooks] (
 	[Id],
 	[AuthorId],
 	[Name],

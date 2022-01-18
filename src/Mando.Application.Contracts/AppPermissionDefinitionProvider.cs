@@ -9,52 +9,52 @@ namespace Mando
         public override void Define(IPermissionDefinitionContext cntx)
         {
             var group = cntx.AddGroup(
-                name: "App",
-                LocalizableString.Create<LocalizationResource>("Permission:App")
+                name: "App.Store",
+                LocalizableString.Create<LocalizationResource>("Permission:App.Store")
             );
 
             // #
 
             var authors = group.AddPermission(
-                name: "App.Authors",
-                LocalizableString.Create<LocalizationResource>("Permission:App.Authors")
+                name: "App.Store.Authors",
+                LocalizableString.Create<LocalizationResource>("Permission:App.Store.Authors")
             );
 
             authors.AddChild(
-                name: "App.Authors.Create",
-                LocalizableString.Create<LocalizationResource>("Permission:App.Authors.Create")
+                name: "App.Store.Authors.Create",
+                LocalizableString.Create<LocalizationResource>("Permission:App.Store.Authors.Create")
             );
 
             authors.AddChild(
-                name: "App.Authors.Update",
-                LocalizableString.Create<LocalizationResource>("Permission:App.Authors.Update")
+                name: "App.Store.Authors.Update",
+                LocalizableString.Create<LocalizationResource>("Permission:App.Store.Authors.Update")
             );
 
             authors.AddChild(
-                name: "App.Authors.Delete",
-                LocalizableString.Create<LocalizationResource>("Permission:App.Authors.Delete")
+                name: "App.Store.Authors.Delete",
+                LocalizableString.Create<LocalizationResource>("Permission:App.Store.Authors.Delete")
             );
 
             // #
 
             var books = group.AddPermission(
-                    name: "App.Books",
-                    LocalizableString.Create<LocalizationResource>("Permission:App.Books")
+                    name: "App.Store.Books",
+                    LocalizableString.Create<LocalizationResource>("Permission:App.Store.Books")
                 );
 
             books.AddChild(
-                name: "App.Books.Create",
-                LocalizableString.Create<LocalizationResource>("Permission:App.Books.Create")
+                name: "App.Store.Books.Create",
+                LocalizableString.Create<LocalizationResource>("Permission:App.Store.Books.Create")
             );
 
             books.AddChild(
-                name: "App.Books.Update",
-                LocalizableString.Create<LocalizationResource>("Permission:App.Books.Update")
+                name: "App.Store.Books.Update",
+                LocalizableString.Create<LocalizationResource>("Permission:App.Store.Books.Update")
             );
 
             books.AddChild(
-                name: "App.Books.Delete",
-                LocalizableString.Create<LocalizationResource>("Permission:App.Books.Delete")
+                name: "App.Store.Books.Delete",
+                LocalizableString.Create<LocalizationResource>("Permission:App.Store.Books.Delete")
             ); 
         }
     }

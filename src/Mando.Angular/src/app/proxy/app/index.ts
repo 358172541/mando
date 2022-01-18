@@ -1,3 +1,2 @@
-import * as Authors from './authors';
-import * as Books from './books';
-export { Authors, Books };
+import * as Store from './store';
+export { Store };

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ListService, PagedResultDto } from '@abp/ng.core';
-import { AuthorDto, AuthorCreateDto, AuthorService, AuthorUpdateDto } from '@proxy/app/authors';
+import { AuthorDto, AuthorCreateDto, AuthorUpdateDto } from '@proxy/app/store';
+import { AuthorService } from '@proxy/app/store/authors';
 import { format } from 'date-fns';
 
 @Component({
@@ -9,7 +10,6 @@ import { format } from 'date-fns';
         ListService
     ],
     selector: 'app-author',
-    styles: [],
     template: `
         <nz-table #nzTable nzBordered nzSize="small" [nzData]="authorPagedResultDto.items">
             <thead>

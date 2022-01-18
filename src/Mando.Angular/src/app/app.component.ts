@@ -19,32 +19,14 @@ import { CrudComponent } from './pages/crud/crud.component';
         `.app-sider-logo { height: 58px; padding-left: 16px; display: flex; align-items: center; }`
     ],
     template: `
-<!--
-        <select #mySelect (change)="changeLanguage(mySelect.value)">
-            <option *ngFor="let item of (languages$ | async)"
-                [value]="item.cultureName"
-                [selected]="item.cultureName===(currentLanguage$ | async)"
-                (click)="changeLanguage(item.cultureName)">
-                {{ item.displayName }}
-            </option>
-        </select>
-
-        <select #mySelect1 (change)="changeLanguage(mySelect1.value)">
-            <option *ngFor="let item of (languages$ | async)"
-                [value]="item.cultureName"
-                [selected]="item.cultureName===(currentLanguage$ | async)"
-                (click)="changeLanguage(item.cultureName)">
-                {{ item.displayName }}
-            </option>
-        </select>
--->
         <nz-layout class="app-layout" *ngIf="visible">
 
             <nz-sider nzCollapsible
-                      [(nzCollapsed)]="collapsed"
-                      [nzCollapsedWidth]="collapsedWidth"
-                      (nzCollapsedChange)="detectRef(tabList[selectedIndex].name)"
-                      *ngIf="hasLoggedIn && menuMode==='side'">
+                [(nzCollapsed)]="collapsed"
+                [nzCollapsedWidth]="collapsedWidth"
+                (nzCollapsedChange)="detectRef(tabList[selectedIndex].name)"
+                *ngIf="hasLoggedIn && menuMode==='side'"
+            >
 
                 <!-- should be component -->
                 <div class="app-sider-logo">
@@ -60,7 +42,8 @@ import { CrudComponent } from './pages/crud/crud.component';
                                 [nzDisabled]="menu.disabled"
                                 [nzPaddingLeft]="menu.level * 16"
                                 [nzSelected]="menu.selected"
-                                (click)="createTab(menu.name)">
+                                (click)="createTab(menu.name)"
+                            >
                                 <i nz-icon *ngIf="menu.icon" [nzType]="menu.icon"></i>
                                 <span>{{ menu.title }}</span>
                             </li>
@@ -70,7 +53,8 @@ import { CrudComponent } from './pages/crud/crud.component';
                                 [nzIcon]="menu.icon"
                                 [nzOpen]="menu.open"
                                 [nzPaddingLeft]="menu.level * 16"
-                                [nzTitle]="menu.title">
+                                [nzTitle]="menu.title"
+                            >
                                 <ul>
                                     <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children }"></ng-container>
                                 </ul>
@@ -78,6 +62,7 @@ import { CrudComponent } from './pages/crud/crud.component';
                         </ng-container>
                     </ng-template>
                 </ul>
+
             </nz-sider>
 
             <nz-layout>
@@ -134,7 +119,7 @@ import { CrudComponent } from './pages/crud/crud.component';
                             <div nz-row nzJustify="end">
                                 <div nz-dropdown [nzDropdownMenu]="userDropdownMenu" nzPlacement="bottomRight"
                                      style="height:58px;margin-right:16px;display:grid;place-items:center;">
-                                    <nz-avatar [nzGap]="1" [nzText]="(currentUser$ | async)?.userName" [nzSize]="30">
+                                    <nz-avatar [nzGap]="1" [nzText]="(currentUser$ | async)?.userName" [nzSize]="30" style="background-color:#1890ff">
                                         <!--{{ (selectedTenant$ | async)?.name }}-->
                                     </nz-avatar>
                                 </div>
@@ -209,29 +194,53 @@ export class AppComponent implements OnInit {
     private src = [
         {
             parentName: null,
-            name: 'X',
+            name: 'a',
+            icon: 'bars',
+            title: '系统首页',
+            component: CrudComponent,
+            closable: false
+        },
+        {
+            parentName: null,
+            name: 'b',
+            icon: 'bars',
+            title: '网上书店示例',
+            component: null,
+            closable: false
+        },
+        {
+            parentName: 'b',
+            name: 'c',
             icon: 'bars',
             title: '作者管理',
             component: AuthorComponent,
             closable: true
         },
         {
-            parentName: null,
-            name: 'Y',
+            parentName: 'b',
+            name: 'd',
             icon: 'bars',
             title: '书籍管理',
             component: BookComponent,
             closable: true
         },
-/*
         {
             parentName: null,
-            name: 'A',
+            name: 'e',
             icon: 'bars',
-            title: '仪表盘',
-            component: CrudComponent,
+            title: '问题跟踪示例',
+            component: null,
             closable: false
         },
+        {
+            parentName: 'e',
+            name: 'f',
+            icon: 'bars',
+            title: '问题管理',
+            component: CrudComponent,
+            closable: true
+        },
+/*
         {
             parentName: null,
             name: 'B',

@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="App\Books\BookController.cs~RF19c07b5a.TMP" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="4.4.4" />
   </ItemGroup>
 

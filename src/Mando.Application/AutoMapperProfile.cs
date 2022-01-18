@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Mando.App.Authors;
-using Mando.App.Books;
+using Mando.App.Store;
 
 namespace Mando
 {

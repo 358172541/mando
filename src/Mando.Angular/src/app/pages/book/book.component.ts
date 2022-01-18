@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ListService, PagedResultDto } from '@abp/ng.core';
-import { BookDto, BookCreateDto, BookService, bookTypeOptions, BookUpdateDto, AuthorLookupDto } from '@proxy/app/books';
+import { AuthorLookupDto, BookDto, BookCreateDto, BookUpdateDto, bookTypeOptions  } from '@proxy/app/store';
+import { BookService } from '@proxy/app/store/books';
 import { format } from 'date-fns';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,7 +12,6 @@ import { map } from 'rxjs/operators';
         ListService
     ],
     selector: 'app-book',
-    styles: [],
     template: `
         <nz-table #nzTable nzBordered nzSize="small" [nzData]="bookPagedResultDto.items">
             <thead>
