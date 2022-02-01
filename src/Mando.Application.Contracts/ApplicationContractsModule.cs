@@ -7,15 +7,15 @@ using Volo.Abp.TenantManagement;
 
 namespace Mando
 {
-    [DependsOn(
-        typeof(DomainSharedModule),
-        typeof(AbpFeatureManagementApplicationContractsModule),
-        typeof(AbpIdentityApplicationContractsModule),
-        typeof(AbpPermissionManagementApplicationContractsModule),
-        typeof(AbpSettingManagementApplicationContractsModule),
-        typeof(AbpTenantManagementApplicationContractsModule)
-        )]
-    public class ApplicationContractsModule : AbpModule
-    {
-    }
+	[DependsOn(
+		typeof(DomainSharedModule),
+		typeof(AbpFeatureManagementApplicationContractsModule),
+		typeof(AbpIdentityApplicationContractsModule),
+		typeof(AbpPermissionManagementApplicationContractsModule),
+		typeof(AbpSettingManagementApplicationContractsModule),
+		typeof(AbpTenantManagementApplicationContractsModule)
+		)]
+	public class ApplicationContractsModule : AbpModule
+	{
+	}
 }

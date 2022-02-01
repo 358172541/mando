@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Volo.Abp.ObjectExtending;
 
 namespace Mando.App.Store
 {
-    public class BookCreateDto
+    public class BookCreateDto : ExtensibleObject
     {
         [Required]
         public Guid AuthorId { get; set; }

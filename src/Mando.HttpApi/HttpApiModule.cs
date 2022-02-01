@@ -1,6 +1,6 @@
 ﻿using Localization.Resources.AbpUi;
 //using Volo.Abp.FeatureManagement;
-//using Volo.Abp.Identity;
+using Volo.Abp.Identity;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 //using Volo.Abp.PermissionManagement.HttpApi;
@@ -11,9 +11,9 @@ using LocalizationResource = Mando.Localization.LocalizationResource;
 namespace Mando
 {
     [DependsOn(
-        typeof(ApplicationContractsModule)
+        typeof(ApplicationContractsModule),
         //typeof(AbpFeatureManagementHttpApiModule),
-        //typeof(AbpIdentityHttpApiModule),
+        typeof(AbpIdentityHttpApiModule)
         //typeof(AbpPermissionManagementHttpApiModule),
         //typeof(AbpSettingManagementHttpApiModule),
         //typeof(AbpTenantManagementHttpApiModule)

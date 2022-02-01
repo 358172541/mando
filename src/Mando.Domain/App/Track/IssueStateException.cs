@@ -6,6 +6,7 @@ namespace Mando.App.Track
     {
         public IssueStateException(string code) : base(code)
         {
+
         }
     }
 }

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Abp\AuditLogging\" />
     <Folder Include="App\Track\" />
   </ItemGroup>
 

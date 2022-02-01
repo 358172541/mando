@@ -50,5 +50,7 @@ namespace Mando.App.Track
         {
             IsLocked = false;
         }
+
+        public bool IsInactive() => new IssueInactiveSpecification().IsSatisfiedBy(this);
     }
 }

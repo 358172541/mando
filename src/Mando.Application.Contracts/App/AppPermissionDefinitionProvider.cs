@@ -2,7 +2,7 @@
 using Volo.Abp.Localization;
 using LocalizationResource = Mando.Localization.LocalizationResource;
 
-namespace Mando
+namespace Mando.App
 {
     public class AppPermissionDefinitionProvider : PermissionDefinitionProvider
     {

@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Mando.Domain.Shared\Mando.Domain.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abp\AuditLogging\" />
+  </ItemGroup>
+
 </Project>

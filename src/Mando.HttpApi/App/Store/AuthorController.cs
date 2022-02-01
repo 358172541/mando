@@ -3,7 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 
-namespace Mando.App.Store.Authors
+namespace Mando.App.Store
 {
     [Route("api/app/store/authors")]
     public class AuthorController : HttpApiController, IAuthorAppService

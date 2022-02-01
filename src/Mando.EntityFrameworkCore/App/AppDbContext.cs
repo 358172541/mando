@@ -23,7 +23,7 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
-namespace Mando
+namespace Mando.App
 {
     [ConnectionStringName("Default")]
     [ReplaceDbContext(

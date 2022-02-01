@@ -24,4 +24,8 @@
     <Content Remove="Localization\Resources\*.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abp\AuditLogging\" />
+  </ItemGroup>
+
 </Project>

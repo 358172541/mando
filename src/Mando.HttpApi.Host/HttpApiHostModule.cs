@@ -25,8 +25,7 @@ using Volo.Abp.Settings;
 using Volo.Abp.Swashbuckle;
 using LocalizationResource = Mando.Localization.LocalizationResource;
 
-namespace Mando
-{
+namespace Mando {
     [DependsOn(
         typeof(ApplicationModule),
         typeof(EntityFrameworkCoreModule),
@@ -38,8 +37,7 @@ namespace Mando
         typeof(AbpIdentityAspNetCoreModule),
         typeof(AbpSwashbuckleModule)
     )]
-    public class HttpApiHostModule : AbpModule
-    {
+    public class HttpApiHostModule : AbpModule {
         private static IList<LanguageInfo> LanguageInfoList =>
             new List<LanguageInfo>
             {
@@ -134,16 +132,12 @@ namespace Mando
                 opts.AddAssemblyResource(typeof(LocalizationResource), typeof(HttpApiHostModule).Assembly);
             });
         }
+
         public override void ConfigureServices(ServiceConfigurationContext cntx)
         {
             var cfgr = cntx.Services.GetConfiguration();
 
-            //Configure<AbpAspNetCoreMvcOptions>(opts =>
-            //{
-            //    opts.ConventionalControllers.Create(typeof(ApplicationModule).Assembly);
-            //});
-
-            Configure<AbpLocalizationOptions>(opts =>
+			Configure<AbpLocalizationOptions>(opts =>
             {
                 LanguageInfoList.ToList().ForEach(x => opts.Languages.Add(x));
             });
@@ -152,11 +146,14 @@ namespace Mando
             ConfigureCors(cntx, cfgr);
             ConfigureSwagger(cntx, cfgr);
         }
+
         public override void OnApplicationInitialization(ApplicationInitializationContext cntx)
         {
+            // cntx.ServiceProvider.GetRequiredService
+
             var budr = cntx.GetApplicationBuilder();
             var cfgr = cntx.GetConfiguration();
-            
+
             budr.UseDeveloperExceptionPage();
 
             budr.UseAbpRequestLocalization(opts =>
