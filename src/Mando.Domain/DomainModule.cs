@@ -10,24 +10,24 @@ using Volo.Abp.TenantManagement;
 
 namespace Mando
 {
-    [DependsOn(
-        typeof(DomainSharedModule),
-        typeof(AbpFeatureManagementDomainModule),
-        typeof(AbpIdentityDomainModule),
-        typeof(AbpIdentityServerDomainModule),
-        typeof(AbpPermissionManagementDomainIdentityModule),
-        typeof(AbpPermissionManagementDomainIdentityServerModule),
-        typeof(AbpSettingManagementDomainModule),
-        typeof(AbpTenantManagementDomainModule)
-        )]
-    public class DomainModule : AbpModule
-    {
-        public override void ConfigureServices(ServiceConfigurationContext cntx)
-        {
-            Configure<AbpMultiTenancyOptions>(opts =>
-            {
-                opts.IsEnabled = true;
-            });
-        }
-    }
+	[DependsOn(
+		typeof(DomainSharedModule),
+		typeof(AbpFeatureManagementDomainModule),
+		typeof(AbpIdentityDomainModule),
+		typeof(AbpIdentityServerDomainModule),
+		typeof(AbpPermissionManagementDomainIdentityModule),
+		typeof(AbpPermissionManagementDomainIdentityServerModule),
+		typeof(AbpSettingManagementDomainModule),
+		typeof(AbpTenantManagementDomainModule)
+		)]
+	public class DomainModule : AbpModule
+	{
+		public override void ConfigureServices(ServiceConfigurationContext cntx)
+		{
+			Configure<AbpMultiTenancyOptions>(opts =>
+			{
+				opts.IsEnabled = true;
+			});
+		}
+	}
 }

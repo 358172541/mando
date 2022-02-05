@@ -29,8 +29,8 @@ namespace Mando.App.Store
 
         public async Task<BookDto> GetAsync(Guid id)
         {
-            var query = from book in _bookRepository
-                        join author in _authorRepository on book.AuthorId equals author.Id
+            var query = from book in (await _bookRepository.GetQueryableAsync())
+                        join author in (await _authorRepository.GetQueryableAsync()) on book.AuthorId equals author.Id
                         where book.Id == id
                         select new { book, author };
 
@@ -51,10 +51,12 @@ namespace Mando.App.Store
             if (input.Sorting.IsNullOrWhiteSpace())
                 input.Sorting = nameof(Book.Name);
 
-            var repos = _bookRepository.WhereIf(!input.Filter.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Filter));
+            var repos = (await _bookRepository
+                .GetQueryableAsync())
+                .WhereIf(!input.Filter.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Filter));
 
             var query = from book in repos
-                        join author in _authorRepository on book.AuthorId equals author.Id
+                        join author in (await _authorRepository.GetQueryableAsync()) on book.AuthorId equals author.Id
                         orderby input.Sorting
                         select new { book, author };
 

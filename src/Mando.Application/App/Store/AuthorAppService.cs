@@ -32,7 +32,9 @@ namespace Mando.App.Store
             if (input.Sorting.IsNullOrWhiteSpace())
                 input.Sorting = nameof(Author.Name);
 
-            var repos = _authorRepository.WhereIf(!input.Filter.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Filter));
+            var repos = (await _authorRepository
+                .GetQueryableAsync())
+                .WhereIf(!input.Filter.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Filter));
 
             var query = from author in repos
                         orderby input.Sorting

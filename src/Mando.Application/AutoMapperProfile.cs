@@ -7,7 +7,7 @@ namespace Mando
     {
         public AutoMapperProfile()
         {
-            CreateMap<Author, AuthorDto>();
+            CreateMap<Author, AuthorDto>().MapExtraProperties();
 
             CreateMap<Book, BookDto>();
 
