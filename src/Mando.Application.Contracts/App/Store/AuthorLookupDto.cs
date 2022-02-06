@@ -1,10 +1,9 @@
 ﻿using System;
 using Volo.Abp.Application.Dtos;
 
-namespace Mando.App.Store
+namespace Mando.App.Store;
+
+public class AuthorLookupDto : EntityDto<Guid>
 {
-    public class AuthorLookupDto : EntityDto<Guid>
-    {
-        public string Name { get; set; }
-    }
+	public string Name { get; set; }
 }

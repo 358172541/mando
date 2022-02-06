@@ -8,26 +8,25 @@ using Volo.Abp.PermissionManagement.IdentityServer;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
 
-namespace Mando
+namespace Mando;
+
+[DependsOn(
+	typeof(DomainSharedModule),
+	typeof(AbpFeatureManagementDomainModule),
+	typeof(AbpIdentityDomainModule),
+	typeof(AbpIdentityServerDomainModule),
+	typeof(AbpPermissionManagementDomainIdentityModule),
+	typeof(AbpPermissionManagementDomainIdentityServerModule),
+	typeof(AbpSettingManagementDomainModule),
+	typeof(AbpTenantManagementDomainModule)
+	)]
+public class DomainModule : AbpModule
 {
-	[DependsOn(
-		typeof(DomainSharedModule),
-		typeof(AbpFeatureManagementDomainModule),
-		typeof(AbpIdentityDomainModule),
-		typeof(AbpIdentityServerDomainModule),
-		typeof(AbpPermissionManagementDomainIdentityModule),
-		typeof(AbpPermissionManagementDomainIdentityServerModule),
-		typeof(AbpSettingManagementDomainModule),
-		typeof(AbpTenantManagementDomainModule)
-		)]
-	public class DomainModule : AbpModule
+	public override void ConfigureServices(ServiceConfigurationContext cntx)
 	{
-		public override void ConfigureServices(ServiceConfigurationContext cntx)
+		Configure<AbpMultiTenancyOptions>(opts =>
 		{
-			Configure<AbpMultiTenancyOptions>(opts =>
-			{
-				opts.IsEnabled = true;
-			});
-		}
+			opts.IsEnabled = true;
+		});
 	}
 }

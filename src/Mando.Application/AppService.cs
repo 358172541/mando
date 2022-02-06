@@ -1,13 +1,12 @@
 ﻿using Volo.Abp.Application.Services;
 using LocalizationResource = Mando.Localization.LocalizationResource;
 
-namespace Mando
+namespace Mando;
+
+public abstract class AppService : ApplicationService
 {
-    public abstract class AppService : ApplicationService
-    {
-        protected AppService()
-        {
-            LocalizationResource = typeof(LocalizationResource);
-        }
-    }
+	protected AppService()
+	{
+		LocalizationResource = typeof(LocalizationResource);
+	}
 }

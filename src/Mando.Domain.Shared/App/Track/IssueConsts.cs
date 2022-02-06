@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mando.App.Track
+namespace Mando.App.Track;
+
+public static class IssueConsts
 {
-    public static class IssueConsts
-    {
-        public const int TitleMaxLength = 64;
-    }
+	public const int TitleMaxLength = 64;
 }

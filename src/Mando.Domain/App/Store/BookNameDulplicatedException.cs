@@ -1,12 +1,11 @@
 ﻿using Volo.Abp;
 
-namespace Mando.App.Store
+namespace Mando.App.Store;
+
+public class BookNameDulplicatedException : BusinessException
 {
-    public class BookNameDulplicatedException : BusinessException
-    {
-        public BookNameDulplicatedException(string name) : base("BookNameDulplicated")
-        {
-            WithData("name", name);
-        }
-    }
+	public BookNameDulplicatedException(string name) : base("BookNameDulplicated")
+	{
+		WithData("name", name);
+	}
 }

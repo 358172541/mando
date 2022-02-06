@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\abp\Volo.Abp.AuditLogging.EntityFrameworkCore\Volo.Abp.AuditLogging.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\abp\Volo.Abp.IdentityServer.EntityFrameworkCore\Volo.Abp.IdentityServer.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\abp\Volo.Abp.PermissionManagement.EntityFrameworkCore\Volo.Abp.PermissionManagement.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Mando.Domain\Mando.Domain.csproj" />
   </ItemGroup>
 

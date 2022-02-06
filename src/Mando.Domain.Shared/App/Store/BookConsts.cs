@@ -1,7 +1,6 @@
-﻿namespace Mando.App.Store
+﻿namespace Mando.App.Store;
+
+public static class BookConsts
 {
-    public static class BookConsts
-    {
-        public const int NameMaxLength = 64;
-    }
+	public const int NameMaxLength = 64;
 }

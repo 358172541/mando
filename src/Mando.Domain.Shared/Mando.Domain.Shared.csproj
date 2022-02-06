@@ -24,4 +24,9 @@
     <Content Remove="Localization\Resources\*.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\abp\Volo.Abp.AuditLogging.Domain.Shared\Volo.Abp.AuditLogging.Domain.Shared.csproj" />
+    <ProjectReference Include="..\..\abp\Volo.Abp.PermissionManagement.Domain.Shared\Volo.Abp.PermissionManagement.Domain.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,9 +1,8 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Mando.App.Store
+namespace Mando.App.Store;
+
+public class BookGetListDto : PagedAndSortedResultRequestDto
 {
-    public class BookGetListDto : PagedAndSortedResultRequestDto
-    {
-        public string Filter { get; set; }
-    }
+	public string Filter { get; set; }
 }

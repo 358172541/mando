@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyVersion>5.1.3</AssemblyVersion>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Validation" Version="5.1.3" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Volo\Abp\IdentityServer\Localization\Resources\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Volo\Abp\IdentityServer\Localization\Resources\*.json" />
+  </ItemGroup>
+
+</Project>

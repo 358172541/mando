@@ -14,60 +14,59 @@ using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 using LocalizationResource = Mando.Localization.LocalizationResource;
 
-namespace Mando
-{
-	[DependsOn(
-		typeof(AbpFeatureManagementDomainSharedModule),
-		typeof(AbpIdentityDomainSharedModule),
-		typeof(AbpIdentityServerDomainSharedModule),
-		typeof(AbpPermissionManagementDomainSharedModule),
-		typeof(AbpSettingManagementDomainSharedModule),
-		typeof(AbpTenantManagementDomainSharedModule)
-		)]
-	public class DomainSharedModule : AbpModule
-	{
-		private static readonly OneTimeRunner _oneTimeRunner = new OneTimeRunner();
+namespace Mando;
 
-		public override void PreConfigureServices(ServiceConfigurationContext cntx)
+[DependsOn(
+	typeof(AbpFeatureManagementDomainSharedModule),
+	typeof(AbpIdentityDomainSharedModule),
+	typeof(AbpIdentityServerDomainSharedModule),
+	typeof(AbpPermissionManagementDomainSharedModule),
+	typeof(AbpSettingManagementDomainSharedModule),
+	typeof(AbpTenantManagementDomainSharedModule)
+	)]
+public class DomainSharedModule : AbpModule
+{
+	private static readonly OneTimeRunner _oneTimeRunner = new OneTimeRunner();
+
+	public override void PreConfigureServices(ServiceConfigurationContext cntx)
+	{
+		_oneTimeRunner.Run(() =>
 		{
-			_oneTimeRunner.Run(() =>
-			{
-				ObjectExtensionManager.Instance.Modules()
-					.ConfigureIdentity(cfgr =>
+			ObjectExtensionManager.Instance.Modules()
+				.ConfigureIdentity(cfgr =>
+				{
+					cfgr.ConfigureUser(cfgr =>
 					{
-						cfgr.ConfigureUser(cfgr =>
+						cfgr.AddOrUpdateProperty<string>("SocialSecurityNumber", prop =>
 						{
-							cfgr.AddOrUpdateProperty<string>("SocialSecurityNumber", prop =>
-							{
-								prop.Attributes.Add(new RequiredAttribute());
-								prop.Attributes.Add(new StringLengthAttribute(64) { MinimumLength = 4 });
-							});
+							prop.Attributes.Add(new RequiredAttribute());
+							prop.Attributes.Add(new StringLengthAttribute(64) { MinimumLength = 4 });
 						});
 					});
+				});
 				// https://docs.abp.io/en/abp/latest/Module-Entity-Extensions
 			});
-		}
+	}
 
-		public override void ConfigureServices(ServiceConfigurationContext cntx)
+	public override void ConfigureServices(ServiceConfigurationContext cntx)
+	{
+		Configure<AbpVirtualFileSystemOptions>(opts =>
 		{
-			Configure<AbpVirtualFileSystemOptions>(opts =>
-			{
-				opts.FileSets.AddEmbedded<DomainSharedModule>();
-			});
+			opts.FileSets.AddEmbedded<DomainSharedModule>();
+		});
 
-			Configure<AbpLocalizationOptions>(opts =>
-			{
-				opts.Resources
-					.Add<LocalizationResource>()
-					.AddBaseTypes(typeof(AbpValidationResource))
-					.AddVirtualJson("/Localization/Resources");
-				opts.DefaultResourceType = typeof(LocalizationResource);
-			});
+		Configure<AbpLocalizationOptions>(opts =>
+		{
+			opts.Resources
+				.Add<LocalizationResource>()
+				.AddBaseTypes(typeof(AbpValidationResource))
+				.AddVirtualJson("/Localization/Resources");
+			opts.DefaultResourceType = typeof(LocalizationResource);
+		});
 
-			Configure<AbpExceptionLocalizationOptions>(opts =>
-			{
-				opts.MapCodeNamespace("Mando", typeof(LocalizationResource));
-			});
-		}
+		Configure<AbpExceptionLocalizationOptions>(opts =>
+		{
+			opts.MapCodeNamespace("Mando", typeof(LocalizationResource));
+		});
 	}
 }

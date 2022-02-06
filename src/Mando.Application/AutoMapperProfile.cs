@@ -1,17 +1,16 @@
 ﻿using AutoMapper;
 using Mando.App.Store;
 
-namespace Mando
+namespace Mando;
+
+public class AutoMapperProfile : Profile
 {
-    public class AutoMapperProfile : Profile
-    {
-        public AutoMapperProfile()
-        {
-            CreateMap<Author, AuthorDto>().MapExtraProperties();
+	public AutoMapperProfile()
+	{
+		CreateMap<Author, AuthorDto>().MapExtraProperties();
 
-            CreateMap<Book, BookDto>();
+		CreateMap<Book, BookDto>();
 
-            CreateMap<Author, AuthorLookupDto>();
-        }
-    }
+		CreateMap<Author, AuthorLookupDto>();
+	}
 }

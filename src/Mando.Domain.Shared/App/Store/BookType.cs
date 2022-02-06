@@ -1,9 +1,8 @@
-﻿namespace Mando.App.Store
+﻿namespace Mando.App.Store;
+
+public enum BookType
 {
-    public enum BookType
-    {
-        Undefined,
-        Adventure,
-        Fantastic
-    }
+	Undefined,
+	Adventure,
+	Fantastic
 }

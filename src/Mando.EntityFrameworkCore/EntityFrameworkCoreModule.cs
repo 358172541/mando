@@ -10,32 +10,31 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
-namespace Mando
-{
-	[DependsOn(
-		typeof(DomainModule),
-		typeof(AbpEntityFrameworkCoreSqlServerModule),
-		typeof(AbpIdentityEntityFrameworkCoreModule),
-		typeof(AbpIdentityServerEntityFrameworkCoreModule),
-		typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-		typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-		typeof(AbpSettingManagementEntityFrameworkCoreModule),
-		typeof(AbpTenantManagementEntityFrameworkCoreModule)
-		)]
-	public class EntityFrameworkCoreModule : AbpModule
-	{
-		public override void ConfigureServices(ServiceConfigurationContext cntx)
-		{
-			cntx.Services
-				.AddAbpDbContext<AppDbContext>(opts =>
-				{
-					opts.AddDefaultRepositories(includeAllEntities: true);
-				});
+namespace Mando;
 
-			Configure<AbpDbContextOptions>(opts =>
+[DependsOn(
+	typeof(DomainModule),
+	typeof(AbpEntityFrameworkCoreSqlServerModule),
+	typeof(AbpIdentityEntityFrameworkCoreModule),
+	typeof(AbpIdentityServerEntityFrameworkCoreModule),
+	typeof(AbpFeatureManagementEntityFrameworkCoreModule),
+	typeof(AbpPermissionManagementEntityFrameworkCoreModule),
+	typeof(AbpSettingManagementEntityFrameworkCoreModule),
+	typeof(AbpTenantManagementEntityFrameworkCoreModule)
+	)]
+public class EntityFrameworkCoreModule : AbpModule
+{
+	public override void ConfigureServices(ServiceConfigurationContext cntx)
+	{
+		cntx.Services
+			.AddAbpDbContext<AppDbContext>(opts =>
 			{
-				opts.UseSqlServer();
+				opts.AddDefaultRepositories(includeAllEntities: true);
 			});
-		}
+
+		Configure<AbpDbContextOptions>(opts =>
+		{
+			opts.UseSqlServer();
+		});
 	}
 }

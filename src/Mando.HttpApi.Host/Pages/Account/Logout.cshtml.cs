@@ -7,69 +7,68 @@ using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 using Volo.Abp.Identity;
 using IdentityUser = Volo.Abp.Identity.IdentityUser;
 
-namespace Mando.Pages.Account
+namespace Mando.Pages.Account;
+
+/// <summary>
+/// ref Volo.Abp.Account.Web.IdentityServer.Pages.IdentityServerSupportedLogoutModel.cs
+/// </summary>
+public class LogoutModel : AbpPageModel
 {
-    /// <summary>
-    /// ref Volo.Abp.Account.Web.IdentityServer.Pages.IdentityServerSupportedLogoutModel.cs
-    /// </summary>
-    public class LogoutModel : AbpPageModel
-    {
-        [BindProperty(SupportsGet = true), HiddenInput] public string ReturnUrl { get; set; }
+	[BindProperty(SupportsGet = true), HiddenInput] public string ReturnUrl { get; set; }
 
-        public IdentitySecurityLogManager IdentitySecurityLogManager { get; }
-        public IIdentityServerInteractionService IdentityServerInteractionService { get; }
-        public SignInManager<IdentityUser> SignInManager { get; }
+	public IdentitySecurityLogManager IdentitySecurityLogManager { get; }
+	public IIdentityServerInteractionService IdentityServerInteractionService { get; }
+	public SignInManager<IdentityUser> SignInManager { get; }
 
-        public LogoutModel(
-            IdentitySecurityLogManager identitySecurityLogManager,
-            IIdentityServerInteractionService identityServerInteractionService,
-            SignInManager<IdentityUser> signInManager)
-        {
-            IdentitySecurityLogManager = identitySecurityLogManager;
-            IdentityServerInteractionService = identityServerInteractionService;
-            SignInManager = signInManager;
-            LocalizationResourceType = typeof(LocalizationResource);
-        }
+	public LogoutModel(
+		IdentitySecurityLogManager identitySecurityLogManager,
+		IIdentityServerInteractionService identityServerInteractionService,
+		SignInManager<IdentityUser> signInManager)
+	{
+		IdentitySecurityLogManager = identitySecurityLogManager;
+		IdentityServerInteractionService = identityServerInteractionService;
+		SignInManager = signInManager;
+		LocalizationResourceType = typeof(LocalizationResource);
+	}
 
-        public async Task<IActionResult> OnGetAsync(string logoutId)
-        {
-            if (string.IsNullOrEmpty(logoutId) == false)
-            {
-                var context = await IdentityServerInteractionService.GetLogoutContextAsync(logoutId);
+	public async Task<IActionResult> OnGetAsync(string logoutId)
+	{
+		if (string.IsNullOrEmpty(logoutId) == false)
+		{
+			var context = await IdentityServerInteractionService.GetLogoutContextAsync(logoutId);
 
-                if (context == null)
-                    return Redirect("~/");
+			if (context == null)
+				return Redirect("~/");
 
-                if (CurrentUser.IsAuthenticated)
-                {
-                    await IdentitySecurityLogManager.SaveAsync(new IdentitySecurityLogContext
-                    {
-                        Identity = IdentitySecurityLogIdentityConsts.Identity,
-                        Action = IdentitySecurityLogActionConsts.Logout,
-                        ClientId = context.ClientId
-                    });
+			if (CurrentUser.IsAuthenticated)
+			{
+				await IdentitySecurityLogManager.SaveAsync(new IdentitySecurityLogContext
+				{
+					Identity = IdentitySecurityLogIdentityConsts.Identity,
+					Action = IdentitySecurityLogActionConsts.Logout,
+					ClientId = context.ClientId
+				});
 
-                    await SignInManager.SignOutAsync();
-                }
+				await SignInManager.SignOutAsync();
+			}
 
-                return Redirect(context.PostLogoutRedirectUri);
-            }
-            else
-            {
-                if (CurrentUser.IsAuthenticated)
-                {
-                    await IdentitySecurityLogManager.SaveAsync(new IdentitySecurityLogContext
-                    {
-                        Identity = IdentitySecurityLogIdentityConsts.Identity,
-                        Action = IdentitySecurityLogActionConsts.Logout,
-                        ClientId = null
-                    });
+			return Redirect(context.PostLogoutRedirectUri);
+		}
+		else
+		{
+			if (CurrentUser.IsAuthenticated)
+			{
+				await IdentitySecurityLogManager.SaveAsync(new IdentitySecurityLogContext
+				{
+					Identity = IdentitySecurityLogIdentityConsts.Identity,
+					Action = IdentitySecurityLogActionConsts.Logout,
+					ClientId = null
+				});
 
-                    await SignInManager.SignOutAsync();
-                }
+				await SignInManager.SignOutAsync();
+			}
 
-                return Redirect(ReturnUrl);
-            }
-        }
-    }
+			return Redirect(ReturnUrl);
+		}
+	}
 }

@@ -3,23 +3,22 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using LocalizationResource = Mando.Localization.LocalizationResource;
 
-namespace Mando
+namespace Mando;
+
+[DependsOn(
+	typeof(ApplicationContractsModule)
+	)]
+public class HttpApiModule : AbpModule
 {
-    [DependsOn(
-        typeof(ApplicationContractsModule)
-        )]
-    public class HttpApiModule : AbpModule
-    {
-        public override void ConfigureServices(ServiceConfigurationContext cntx)
-        {
-            Configure<AbpLocalizationOptions>(opts =>
-            {
-                opts.Resources
-                    .Get<LocalizationResource>()
-                    .AddBaseTypes(typeof(AbpUiResource));
-            });
-        }
-    }
+	public override void ConfigureServices(ServiceConfigurationContext cntx)
+	{
+		Configure<AbpLocalizationOptions>(opts =>
+		{
+			opts.Resources
+				.Get<LocalizationResource>()
+				.AddBaseTypes(typeof(AbpUiResource));
+		});
+	}
 }
 
 /*
